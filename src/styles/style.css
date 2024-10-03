@@ -1,6 +1,72 @@
-#tst {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 36px;
-  font-weight: bolder;
-  color: rgb(143, 50, 50);
+#d-menu-- {
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  width: 40rem;
+  height: 25rem;
+  top: -4rem;
+  background-color: rgb(152, 62, 62);
+  /* Elementos */
+  /* Inputs */
+  /* Pago? */
+  /*
+  /* */
+  /* Buttons */
+  /* Confirmar e fechar */
+  /* */
+  /* */
+  /* */
+}
+#d-menu-- #d-menu-elmts-- {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#d-menu-- #d-menu-elmts-- input {
+  display: block;
+}
+#d-menu-- #i-fornc-- {
+  position: relative;
+  top: 2.5rem;
+  left: 3rem;
+}
+#d-menu-- #i-vlr-- {
+  position: relative;
+  top: 2.5rem;
+  left: 9rem;
+}
+#d-menu-- #i-venc-- {
+  position: relative;
+  top: 5.5rem;
+  left: -23.8rem;
+}
+#d-menu-- #pg-s {
+  position: relative;
+  top: 5.5rem;
+  left: -9rem;
+  display: flex;
+}
+#d-menu-- #pg-n {
+  position: relative;
+  top: 5.5rem;
+  left: -8rem;
+  display: flex;
+}
+#d-menu-- #btn-c-conta-- {
+  position: relative;
+  left: 8rem;
+}
+#d-menu-- #btn-f-menu-- {
+  position: relative;
+  left: 0.5rem;
+}
+#d-menu-- #--btn-n-fornc {
+  position: relative;
+  top: 2.5rem;
+  left: 3rem;
+}
+#d-menu-- #--btn-l-fornc {
+  position: relative;
+  top: 2.5rem;
+  left: 3rem;
 }/*# sourceMappingURL=style.css.map */
