@@ -1,3 +1,4 @@
+/* Menu */
 #d-menu-- {
   position: fixed;
   inset: 0;
@@ -69,4 +70,13 @@
   position: relative;
   top: 2.5rem;
   left: 3rem;
-}/*# sourceMappingURL=style.css.map */
+}
+
+/* */
+/* Contas */
+#--d-c:hover {
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.234);
+}
+
+/* *//*# sourceMappingURL=style.css.map */
