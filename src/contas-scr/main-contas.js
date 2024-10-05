@@ -1,5 +1,5 @@
 import { useState, useRef, createElement } from 'react';
-import '../styles/style.css';
+import '../styles/contas-style/main-contas.css';
 
 function ContasMain() {
     const [contas, setContas] = useState([]);
