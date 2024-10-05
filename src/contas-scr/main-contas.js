@@ -3,6 +3,7 @@ import '../styles/style.css';
 
 function ContasMain() {
     const [contas, setContas] = useState([]);
+    const [editConta, setEditConta] = useState(null);
 
     //Ref...
         const divMenu = useRef(null);
@@ -46,6 +47,43 @@ function ContasMain() {
         const pgInfo = document.createElement('p');
         pgInfo.id = '--pg-info';
         pgInfo.textContent = 'Pago: ';
+
+        //Menu...
+            function changeContaMenu__(i) {
+                const conta = contas[i];
+                setEditConta(i);
+
+                divMenu.current.style.display = 'block';
+                
+                inputFornc.current.value = conta.fornecedor;
+                inputVlr.current.value = conta.valor;
+                inputVenc.current.value = conta.vencimento;
+
+                //Pago
+                    if(conta.pago === 'Sim') {
+                        inputPgSim.current.checked = true;
+                    } else {
+                        inputPgNao.current.checked = true;
+                    }
+                //
+            }
+
+            function __fecharMenu() {
+                divMenu.current.style.display = 'none';
+            }
+        
+            function addContas__() {
+                divMenu.current.style.display = 'block';
+                setEditConta(null);
+        
+                inputFornc.current.value = '';
+                inputVlr.current.value = '';
+                inputVenc.current.value = '';
+
+                inputPgNao.current.checked = false;
+                inputPgSim.current.checked = false;
+            }
+        //
 
         //JSON...
             function downloadJSON__() {
@@ -124,6 +162,13 @@ function ContasMain() {
                     pgJSON.id = '--pg';
                     pgJSON.textContent = `${pgInfo.textContent} ${conta.pago}`;
 
+                    //Listener...
+                        divContaJSON.addEventListener('dblclick', () => {
+                            const index = contas.indexOf(conta);
+                            changeContaMenu__(index);
+                        });
+                    //
+
                     //Appends...
                         divContaJSON.append(fornTxtJSON);
                         divContaJSON.append(vlrTxtJSON);
@@ -144,68 +189,25 @@ function ContasMain() {
                 pago: inputPgNao.current.checked ? 'Não' : 'Sim',
             };
 
-            setContas((prevContas => [...prevContas, nvConta]));
+            if(editConta !== null) {
+                setContas((prevContas) => {
+                    const nvContaEdit = [...prevContas];
+                    nvContaEdit[editConta] = nvConta;
 
-            const divInfo = document.createElement('div');
-            divInfo.id = '--d-c';
+                    return nvContaEdit;
+                })
+            } else {
+                setContas((prevContas => [...prevContas, nvConta]));
+            }
 
-            const inputForncInfo = document.createElement('p');
-            inputForncInfo.id = '--f-txt';
-            inputForncInfo.textContent = `${fornInfo.textContent} ${nvConta.fornecedor}`;
-
-            const inputVlrInfo = document.createElement('p');
-            inputVlrInfo.id = '--v-txt';
-            inputVlrInfo.textContent = `${valorInfo.textContent} ${nvConta.valor}`;
-
-            const inputVencInfo = document.createElement('p');
-            inputVencInfo.id = '--venc-txt'
-            inputVencInfo.textContent = `${vencInfo.textContent} ${nvConta.vencimento}`;
-
-            const pg = document.createElement('p');
-            pg.id = '--pg';
-            pg.textContent = `${pgInfo.textContent} ${nvConta.pago}`;
-
-            //Append...
-                divInfo.append(inputForncInfo);
-                divInfo.append(inputVlrInfo);
-                divInfo.append(inputVencInfo);
-                divInfo.append(pg);
-
-                divContaLoad.current.append(divInfo);
-            //
-
-            divMenu.current.style.display = 'none';
+            __fecharMenu();
         }
     //
-
-    //Menu...
-        function menu__(inputForncValue, inputVlrValue, inputVencValue) {
-            inputForncValue = inputFornc.current.value;
-            inputVlrValue = inputVlr.current.value;
-            inputVencValue = inputVenc.current.value;
-        }
-
-        function __fecharMenu() {
-            divMenu.current.style.display = 'none';
-        }
-    
-        function addContas__() {
-            divMenu.current.style.display = 'block';
-    
-            inputFornc.current.value = '';
-            inputVlr.current.value = '';
-            inputVenc.current.value = '';
-
-            inputPgNao.current.checked = false;
-            inputPgSim.current.checked = false;
-        }
-    //
-
 
     return (
         <>
             {/* Adicionar contas... */}
-                <button id='add-btn--' ref={btnAddContas} onClick={addContas__}>+</button>
+                <button id='add-btn--' ref={btnAddContas} onClick={(addContas__)}>+</button>
             {/* */}
 
             {/* --- Menu Contas Main --- */}
@@ -249,8 +251,25 @@ function ContasMain() {
             {/* Carregar JSON... */}
             <input type='file' accept='application/json' onChange={__loadJSON} />
 
-            {/* Exibir contas... */}
-            <div ref={divContaLoad} />
+            {/* Exibir contas & Editar contas... */}
+                <div ref={divContaLoad} onDoubleClick={(e) => {
+                    const target = e.target.closest('#--d-c');
+
+                    if(target) {
+                        const index = Array.from(divContaLoad.current.children).indexOf(target);
+                        changeContaMenu__(index);
+                    }
+                }}>
+                    {contas.map((conta, i) => (
+                        <div key={i} id='--d-c'>
+                            <p>{fornInfo.textContent} {conta.fornecedor}</p>
+                            <p>{valorInfo.textContent} {conta.valor}</p>
+                            <p>{vencInfo.textContent} {conta.vencimento}</p>
+                            <p>{pgInfo.textContent} {conta.pago}</p>
+                        </div>
+                    ))}
+                </div>
+            {/* */}
         </>
     )
 }
