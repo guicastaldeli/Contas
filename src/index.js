@@ -8,6 +8,9 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 
 //Render...
   root.render(
-    <ContasMain />
+    <>
+      <ForncMain />
+      <ContasMain />
+    </>
   );
 //

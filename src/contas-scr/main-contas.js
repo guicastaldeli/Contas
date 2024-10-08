@@ -1,5 +1,5 @@
-import { useState, useRef, createElement } from 'react';
 import '../styles/contas-style/main-contas.css';
+import { useState, useRef, useEffect } from 'react';
 
 function ContasMain() {
     const [contas, setContas] = useState([]);
@@ -26,9 +26,11 @@ function ContasMain() {
             const btnConf = useRef(null);
             const btnFechar = useRef(null);
 
-            const btnNvFornc = useRef(null);
             const btnListFornc = useRef(null);
         //
+
+        //Mudar Inputs...
+        const selectForn = useRef(null);
     //
 
     //Contas...
@@ -87,17 +89,8 @@ function ContasMain() {
 
         //JSON...
             function downloadJSON__() {
-                const nvConta = {
-                    fornecedor: inputFornc.current.value,
-                    valor: inputVlr.current.value,
-                    vencimento: inputVenc.current.value,
-                    pago: inputPgNao.current.checked ? 'Não' : 'Sim',
-                };
-
-                setContas((prevContas) => [...prevContas, nvConta]);
-
                 //Criar arquivo...
-                    const json = JSON.stringify(nvConta, null, 2);
+                    const json = JSON.stringify(contas, null, 2);
                     const blob = new Blob([json], { type: 'application/json'});
                     const url = URL.createObjectURL(blob);
 
@@ -124,59 +117,39 @@ function ContasMain() {
                         const data = JSON.parse(e.target.result);
 
                         if(Array.isArray(data)) {
-                            setContas((prevContas) => [...prevContas, ...data]);
-        
-                            loadContas__(data);
+                            setContas((prevContas) => {
+                                const nvsContas = prevContas.filter((nvsContas) => {
+                                    return !prevContas.some((contaExist) =>
+                                        contaExist.fornecedor === nvsContas.fornecedor &&
+                                        contaExist.valor === nvsContas.valor &&
+                                        contaExist.vencimento === nvsContas.vencimento
+                                    );
+                                }) 
+
+                                return [...prevContas, ...nvsContas];
+                            });
                         } else {
-                            setContas((prevContas) => [...prevContas, data]);
-                            loadContas__([data]);
+                            const nvsContas = data;
+
+                            setContas((prevContas) => {
+                                const contaExist = prevContas.some((contaExist) => {
+                                    return !prevContas.some((contaExist) =>
+                                        contaExist.fornecedor === nvsContas.fornecedor &&
+                                        contaExist.valor === nvsContas.valor &&
+                                        contaExist.vencimento === nvsContas.vencimento 
+                                    );
+
+                                    if(!contaExist) {
+                                        return [...prevContas, ...nvsContas];
+                                    }
+
+                                    return prevContas;
+                                })
+                            });
                         }
                     };
 
                     reader.readAsText(file);
-                }
-            }
-        //
-
-        //Carregar contas...
-            function loadContas__(data) {
-                const contasLoad = Array.isArray(data) ? data : [data];
-
-                for(const conta of contasLoad) {
-                    const divContaJSON = document.createElement('div');
-                    divContaJSON.id = '--d-c';
-
-                    const fornTxtJSON = document.createElement('p');
-                    fornTxtJSON.id = '--f-txt';
-                    fornTxtJSON.textContent = `${fornInfo.textContent} ${conta.fornecedor}`;
-
-                    const vlrTxtJSON = document.createElement('p');
-                    vlrTxtJSON.id = '--v-txt';
-                    vlrTxtJSON.textContent = `${valorInfo.textContent} ${conta.valor}`;
-
-                    const vencTxtJSON = document.createElement('p');
-                    vencTxtJSON.id = '--venc-txt';
-                    vencTxtJSON.textContent = `${vencInfo.textContent} ${conta.vencimento}`;
-
-                    const pgJSON = document.createElement('p');
-                    pgJSON.id = '--pg';
-                    pgJSON.textContent = `${pgInfo.textContent} ${conta.pago}`;
-
-                    //Listener...
-                        divContaJSON.addEventListener('dblclick', () => {
-                            const index = contas.indexOf(conta);
-                            changeContaMenu__(index);
-                        });
-                    //
-
-                    //Appends...
-                        divContaJSON.append(fornTxtJSON);
-                        divContaJSON.append(vlrTxtJSON);
-                        divContaJSON.append(vencTxtJSON);
-                        divContaJSON.append(pgJSON);
-
-                        divContaLoad.current.append(divContaJSON);
-                    //
                 }
             }
         //
@@ -204,49 +177,98 @@ function ContasMain() {
         }
     //
 
+    //Fornc JSON...
+        const [forncs, setForncs] = useState([]);
+
+        useEffect(() => {
+            setForncs([]);
+        }, []);
+
+        function __loadFornc(e) {
+            const file = e.target.files[0];
+
+            if(file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    const data = JSON.parse(e.target.result);
+
+                    if(Array.isArray(data) && data.length > 1) {
+                        const forncArray = data.map(item => item.rzSocial);
+                        setForncs(forncArray);
+
+                        if(forncArray.length > 0) {
+                            inputFornc.current.value = forncArray[0];
+                        }
+                    } else {
+                        console.log('err')
+                    }
+                };
+
+                reader.readAsText(file);
+            }
+        }
+
+        function changeInput(item) {
+            inputFornc.current.value = item;
+        }
+    //  
+
     return (
         <>
             {/* Adicionar contas... */}
-                <button id='add-btn--' ref={btnAddContas} onClick={(addContas__)}>+</button>
+                <button id="add-btn--" ref={btnAddContas} onClick={(addContas__)}>+</button>
             {/* */}
 
             {/* --- Menu Contas Main --- */}
-                <div id='d-menu--' ref={divMenu} style={{ display: 'none' }}>
-                    <div id='d-menu-elmts--'>
+                <div id="d-menu--" ref={divMenu} style={{ display: 'none' }}>
+                    <div id="d-menu-elmts--">
                         {/* Confirmar e fechar... */}
-                            <button id='btn-c-conta--' ref={btnConf} onClick={__confConta}>Confirmar</button>
-                            <button id='btn-f-menu--' ref={btnFechar} onClick={__fecharMenu}>X</button>
+                            <button id="btn-c-conta--" ref={btnConf} onClick={__confConta}>Confirmar</button>
+                            <button id="btn-f-menu--" ref={btnFechar} onClick={__fecharMenu}>X</button>
                         {/* */}
 
                         {/* Forncedor... */}
-                            <input id='i-fornc--' ref={inputFornc} />
+                            <input id="i-fornc--" ref={inputFornc} />
 
-                            <button id='--btn-n-fornc' ref={btnNvFornc}>Novo</button>
-                            <button id='--btn-l-fornc' ref={btnListFornc}>Lista</button>
+                            {/* Lista Fornecedores JSON... */}
+                                <input type="file" id="i-l-fornc--" accept="application/json" onChange={__loadFornc}></input>
+                                <label htmlFor="i-l-fornc--">Lista</label>
+
+                                <div id='opt-fornc--'>
+                                    {forncs.map((item, i) => (
+                                        <div key={i} onClick={() => changeInput(item)} id='opt-fornc-b--'>
+                                            {item}
+                                        </div>
+                                    ))}
+                                </div>
+                            {/* */}
                         {/* */}
 
                         {/* Valor... */}
-                            <input id='i-vlr--' ref={inputVlr} />
+                            <input id="i-vlr--" ref={inputVlr} />
                         {/* */}
 
                         {/* Vencimento... */}
-                            <input id='i-venc--' ref={inputVenc} />
+                            <input id="i-venc--" ref={inputVenc} />
                         {/* */}
 
                         {/* Pago? (input) */}
-                            <div id='pg-s'>
-                                <input id='i-pg-s--' type='radio' name='pg-sn' ref={inputPgSim} />
-                                <label htmlFor='i-pg-s'>Sim</label>
+                            <div id="pg-s">
+                                <input id="i-pg-s--" type="radio" name="pg-sn" ref={inputPgSim} />
+                                <label htmlFor="i-pg-s">Sim</label>
                             </div>
 
-                            <div id='pg-n'>
-                                <input id='i-pg-n--' type='radio' name='pg-sn' ref={inputPgNao} />
-                                <label htmlFor='i-pg-n--'>Não</label>
+                            <div id="pg-n">
+                                <input id="i-pg-n--" type="radio" name="pg-sn" ref={inputPgNao} />
+                                <label htmlFor="i-pg-n--">Não</label>
                             </div>
                         {/* */}
                     </div>
                 </div>
             {/* ------ */}
+            
+            {/* Baixar JSON */}
+            <button id='btn-d-json--' onClick={downloadJSON__}>Baixar contas</button>
 
             {/* Carregar JSON... */}
             <input type='file' accept='application/json' onChange={__loadJSON} />
@@ -260,14 +282,16 @@ function ContasMain() {
                         changeContaMenu__(index);
                     }
                 }}>
-                    {contas.map((conta, i) => (
-                        <div key={i} id='--d-c'>
-                            <p>{fornInfo.textContent} {conta.fornecedor}</p>
-                            <p>{valorInfo.textContent} {conta.valor}</p>
-                            <p>{vencInfo.textContent} {conta.vencimento}</p>
-                            <p>{pgInfo.textContent} {conta.pago}</p>
-                        </div>
-                    ))}
+                    <div ref={divContaLoad}>
+                        {contas.map((conta, i) => (
+                            <div key={i} id='--d-c'>
+                                <p>{fornInfo.textContent} {conta.fornecedor}</p>
+                                <p>{valorInfo.textContent} {conta.valor}</p>
+                                <p>{vencInfo.textContent} {conta.vencimento}</p>
+                                <p>{pgInfo.textContent} {conta.pago}</p>
+                            </div>
+                        ))}
+                    </div>
                 </div>
             {/* */}
         </>

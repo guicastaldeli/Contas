@@ -1,1 +1,1 @@
-{"version":3,"sources":[],"names":[],"mappings":"","file":"main-fornc.css"}
+{"version":3,"sources":["main-fornc.scss","main-fornc.css"],"names":[],"mappings":"AAAA;EACI,yBAAA;KAAA,sBAAA;UAAA,iBAAA;EACA,aAAA;ACCJ;ADCI;EACI,eAAA;EACA,sCAAA;ACCR;;ADGA;EACI,YAAA;EAEA,kCAAA;ACDJ;;ADIA;EACI,uBAAA;ACDJ","file":"main-fornc.css"}

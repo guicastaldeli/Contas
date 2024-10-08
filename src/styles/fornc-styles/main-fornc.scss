@@ -1,0 +1,19 @@
+#d-fornc-- {
+    user-select: none;
+    display: flex;
+
+    &:hover {
+        cursor: pointer;
+        background-color: rgba(0, 0, 0, 0.162);
+    }
+}
+
+#d-menu-fornc-- {
+    width: 45rem;
+    
+    background-color: rgb(166, 99, 99);
+}
+
+#opt-fornc-- {
+    background-color: white;
+}
