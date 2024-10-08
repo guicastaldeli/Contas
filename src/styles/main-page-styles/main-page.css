@@ -1,0 +1,94 @@
+html {
+  background-color: rgb(247, 247, 247);
+}
+
+/* Buttons */
+/* Contas */
+#r-c-- {
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  left: -17rem;
+  top: -5rem;
+  width: 14rem;
+  height: 14rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgb(114, 114, 114);
+  border: 0;
+  border-radius: 6px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1450980392);
+  background-color: white;
+  /* hover */
+  /* */
+  /* p & img */
+  /* */
+}
+#r-c--:hover {
+  cursor: pointer;
+  background-color: rgb(242, 242, 242);
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2901960784);
+  color: rgb(92, 92, 92);
+}
+#r-c-- p {
+  position: relative;
+  top: 6.2rem;
+  font-family: "Helvetica", sans-serif;
+  font-size: 22px;
+  font-weight: bolder;
+  text-shadow: 0px 2px 1px rgba(0, 0, 0, 0.1450980392);
+}
+#r-c-- img {
+  position: absolute;
+  top: 0.8rem;
+  width: 12rem;
+  height: 12rem;
+}
+
+/* */
+/* Fornecedores */
+#r-f-- {
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  left: 14rem;
+  top: -5rem;
+  width: 14rem;
+  height: 14rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 0;
+  border-radius: 6px;
+  color: rgb(114, 114, 114);
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1450980392);
+  background-color: white;
+  /* hover */
+  /* */
+  /* p & img */
+  /* */
+}
+#r-f--:hover {
+  cursor: pointer;
+  background-color: rgb(242, 242, 242);
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2901960784);
+  color: rgb(92, 92, 92);
+}
+#r-f-- p {
+  position: relative;
+  top: 6.2rem;
+  font-family: "Helvetica", sans-serif;
+  font-size: 21px;
+  font-weight: bolder;
+  text-shadow: 0px 2px 1px rgba(0, 0, 0, 0.0901960784);
+}
+#r-f-- img {
+  position: absolute;
+  top: 0.4rem;
+  width: 12rem;
+  height: 12rem;
+}
+
+/* */
+/* *//*# sourceMappingURL=main-page.css.map */

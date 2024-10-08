@@ -1,4 +1,70 @@
 /* ------- Imports ------- */
+html {
+  background-color: rgb(247, 247, 247);
+}
+
+/* Buttons */
+/* Contas */
+#r-c-- {
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  left: -15rem;
+  top: -5rem;
+  width: 12rem;
+  height: 12rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid;
+  background-color: white;
+}
+#r-c-- p {
+  color: red;
+  position: relative;
+  top: 6.2rem;
+}
+#r-c-- img {
+  position: absolute;
+  width: 12rem;
+  height: 12rem;
+}
+
+/* */
+/* Fornecedores */
+#r-f-- {
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  left: 12rem;
+  top: -5rem;
+  width: 14rem;
+  height: 14rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 0;
+  border-radius: 6px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1450980392);
+  background-color: white;
+}
+#r-f-- p {
+  position: relative;
+  top: 6.2rem;
+  font-family: "Helvetica", sans-serif;
+  font-size: 22px;
+  font-weight: bolder;
+  text-shadow: 0px 2px 0px rgba(0, 0, 0, 0.0901960784);
+}
+#r-f-- img {
+  position: absolute;
+  top: 0.4rem;
+  width: 12rem;
+  height: 12rem;
+}
+
+/* */
+/* */
 /* Menu */
 #d-menu-- {
   position: fixed;

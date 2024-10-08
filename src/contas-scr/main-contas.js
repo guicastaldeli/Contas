@@ -1,5 +1,6 @@
-import '../styles/contas-style/main-contas.css';
+import '../styles/contas-styles/main-contas.css';
 import { useState, useRef, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function ContasMain() {
     const [contas, setContas] = useState([]);
@@ -211,10 +212,21 @@ function ContasMain() {
         function changeInput(item) {
             inputFornc.current.value = item;
         }
-    //  
+    //
+    
+    //Voltar...
+        const navigate = useNavigate();
+
+        function __rdrctBack() {
+            navigate('/');
+        }
+    //
 
     return (
         <>
+            {/* Voltar... */}
+            <button id='--b-p-c' onClick={__rdrctBack}>Voltar</button>
+
             {/* Adicionar contas... */}
                 <button id="add-btn--" ref={btnAddContas} onClick={(addContas__)}>+</button>
             {/* */}
@@ -268,7 +280,7 @@ function ContasMain() {
             {/* ------ */}
             
             {/* Baixar JSON */}
-            <button id='btn-d-json--' onClick={downloadJSON__}>Baixar contas</button>
+            <button id='btn-d-json--' onClick={downloadJSON__} disabled={contas.length === 0}>Baixar contas</button>
 
             {/* Carregar JSON... */}
             <input type='file' accept='application/json' onChange={__loadJSON} />

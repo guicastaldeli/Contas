@@ -1,5 +1,6 @@
 import '../styles/fornc-styles/main-fornc.css';
 import { useState, useRef } from "react";
+import { useNavigate } from 'react-router-dom';
 
 function ForncMain() {
     const [fornc, setFornc] = useState([]);
@@ -221,7 +222,6 @@ function ForncMain() {
                 }
         
                 fecharMenu__();
-                console.log(nvFornc)
             }
 
             function changeForncMenu__(i) {
@@ -247,8 +247,19 @@ function ForncMain() {
         //
     //
 
+    //Voltar...
+        const navigate = useNavigate();
+
+        function __rdrctBack() {
+            navigate('/');
+        }
+    //
+
     return (
         <>
+            {/* Voltar... */}
+            <button id='--b-p-f' onClick={__rdrctBack}>Voltar</button>
+
             {/* ------ Novos Fornecedores ------ */}
                 {/* Adicionar fornecedores... */}
                     <button id="-add-fornc--" onClick={showAddMenu__}>+</button>
@@ -310,7 +321,7 @@ function ForncMain() {
             {/* -------------------------------- */}
 
             {/* Baixar JSON */}
-            <button id='btn-d-json--' onClick={downloadJSON__}>Baixar</button>
+            <button id='btn-d-json--' onClick={downloadJSON__} disabled={fornc.length === 0}>Baixar</button>
 
             {/* Carregar JSON */}
             <input type='file' accept='application/json' onChange={__loadJSON} />
