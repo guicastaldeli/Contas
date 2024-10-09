@@ -1,4 +1,5 @@
 import '../styles/contas-styles/main-contas.css';
+
 import { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -53,22 +54,26 @@ function ContasMain() {
 
         //Menu...
             function changeContaMenu__(i) {
-                const conta = contas[i];
-                setEditConta(i);
-
-                divMenu.current.style.display = 'block';
-                
-                inputFornc.current.value = conta.fornecedor;
-                inputVlr.current.value = conta.valor;
-                inputVenc.current.value = conta.vencimento;
-
-                //Pago
-                    if(conta.pago === 'Sim') {
-                        inputPgSim.current.checked = true;
-                    } else {
-                        inputPgNao.current.checked = true;
-                    }
-                //
+                if(i >= 0 && i < contas.length && contas[i]) {
+                    const conta = contas[i];
+                    setEditConta(i);
+    
+                    divMenu.current.style.display = 'block';
+                    
+                    inputFornc.current.value = conta.fornecedor || '';
+                    inputVlr.current.value = conta.valor || '';
+                    inputVenc.current.value = conta.vencimento || '';
+    
+                    //Pago
+                        if(conta.pago === 'Sim') {
+                            inputPgSim.current.checked = true;
+                        } else {
+                            inputPgNao.current.checked = true;
+                        }
+                    //
+                } else {
+                    console.log('err')
+                }
             }
 
             function __fecharMenu() {
@@ -119,34 +124,18 @@ function ContasMain() {
 
                         if(Array.isArray(data)) {
                             setContas((prevContas) => {
-                                const nvsContas = prevContas.filter((nvsContas) => {
+                                const nvsContas = data.filter((nvsContas) => {
                                     return !prevContas.some((contaExist) =>
                                         contaExist.fornecedor === nvsContas.fornecedor &&
                                         contaExist.valor === nvsContas.valor &&
                                         contaExist.vencimento === nvsContas.vencimento
                                     );
-                                }) 
+                                });
 
                                 return [...prevContas, ...nvsContas];
                             });
                         } else {
-                            const nvsContas = data;
-
-                            setContas((prevContas) => {
-                                const contaExist = prevContas.some((contaExist) => {
-                                    return !prevContas.some((contaExist) =>
-                                        contaExist.fornecedor === nvsContas.fornecedor &&
-                                        contaExist.valor === nvsContas.valor &&
-                                        contaExist.vencimento === nvsContas.vencimento 
-                                    );
-
-                                    if(!contaExist) {
-                                        return [...prevContas, ...nvsContas];
-                                    }
-
-                                    return prevContas;
-                                })
-                            });
+                            console.log('err')
                         }
                     };
 
@@ -231,6 +220,15 @@ function ContasMain() {
                 <button id="add-btn--" ref={btnAddContas} onClick={(addContas__)}>+</button>
             {/* */}
 
+            {/* Baixar JSON */}
+            <button id='btn-d-json--' onClick={downloadJSON__} disabled={contas.length === 0}>Baixar contas</button>
+
+            {/* Carregar JSON... */}
+            <label id='l-l-json--' htmlFor='i-l-json'>
+                <input id='i-l-json--' type='file' accept='application/json' onChange={__loadJSON} style={{ width: '10.3rem', cursor: 'pointer' }}/>
+                <p>Carregar contas</p>
+            </label>
+
             {/* --- Menu Contas Main --- */}
                 <div id="d-menu--" ref={divMenu} style={{ display: 'none' }}>
                     <div id="d-menu-elmts--">
@@ -278,12 +276,6 @@ function ContasMain() {
                     </div>
                 </div>
             {/* ------ */}
-            
-            {/* Baixar JSON */}
-            <button id='btn-d-json--' onClick={downloadJSON__} disabled={contas.length === 0}>Baixar contas</button>
-
-            {/* Carregar JSON... */}
-            <input type='file' accept='application/json' onChange={__loadJSON} />
 
             {/* Exibir contas & Editar contas... */}
                 <div ref={divContaLoad} onDoubleClick={(e) => {
@@ -294,16 +286,14 @@ function ContasMain() {
                         changeContaMenu__(index);
                     }
                 }}>
-                    <div ref={divContaLoad}>
-                        {contas.map((conta, i) => (
-                            <div key={i} id='--d-c'>
-                                <p>{fornInfo.textContent} {conta.fornecedor}</p>
-                                <p>{valorInfo.textContent} {conta.valor}</p>
-                                <p>{vencInfo.textContent} {conta.vencimento}</p>
-                                <p>{pgInfo.textContent} {conta.pago}</p>
-                            </div>
-                        ))}
-                    </div>
+                    {contas.map((conta, i) => (
+                        <div key={i} id='--d-c'>
+                            <p id='test222'>{fornInfo.textContent} {conta.fornecedor}</p>
+                            <p>{valorInfo.textContent} {conta.valor}</p>
+                            <p>{vencInfo.textContent} {conta.vencimento}</p>
+                            <p>{pgInfo.textContent} {conta.pago}</p>
+                        </div>
+                    ))}
                 </div>
             {/* */}
         </>

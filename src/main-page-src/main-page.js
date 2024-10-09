@@ -5,8 +5,6 @@ import { useNavigate } from 'react-router-dom';
 import contasImg from '../assets/add-contas-max.png';
 import forncImg from '../assets/add-fornc-max.png';
 
-console.log(contasImg);
-
 function MainPage() {
     //Redirects...
         const navigate = useNavigate();

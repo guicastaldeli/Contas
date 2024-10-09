@@ -1,8 +1,10 @@
 $defaultFont: 'Helvetica', sans-serif;
 
-html {
-    background-color: rgb(247, 247, 247);
-}
+/* bg color */
+    html {
+        background-color: rgb(247, 247, 247);
+    }
+/* */
 
 /* Buttons */
     /* Contas */
@@ -29,6 +31,8 @@ html {
             background-color: white;
 
             /* hover */
+                transition: background-color 0.12s ease, box-shadow 0.12s ease;
+
                 &:hover {
                     cursor: pointer;
 
@@ -89,6 +93,8 @@ html {
             background-color: white;
 
             /* hover */
+                transition: background-color 0.12s ease, box-shadow 0.12s ease;
+
                 &:hover {
                     cursor: pointer;
 

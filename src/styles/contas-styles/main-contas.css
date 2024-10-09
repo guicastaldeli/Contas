@@ -1,3 +1,146 @@
+/* bg color */
+html {
+  background-color: rgb(247, 247, 247);
+}
+
+/* */
+/* Buttons */
+/* voltar */
+#--b-p-c {
+  width: 12rem;
+  height: 4rem;
+  border: 0;
+  border-radius: 6px;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1450980392);
+  /* text */
+  font-family: Helvetica, sans-serif;
+  font-size: 22px;
+  font-weight: bolder;
+  color: rgb(69, 69, 69);
+  text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1450980392);
+  /* */
+  /* hover */
+  transition: background-color 0.12s ease, box-shadow 0.12s ease;
+  /* */
+}
+#--b-p-c:hover {
+  cursor: pointer;
+  background-color: rgb(244, 244, 244);
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1764705882);
+  color: rgb(56, 56, 56);
+}
+
+/* */
+/* adicionar */
+#add-btn-- {
+  position: fixed;
+  width: 4rem;
+  height: 4rem;
+  left: 16rem;
+  border: 0;
+  border-radius: 6px;
+  background-color: #5cb756;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1450980392);
+  /* text */
+  font-family: Helvetica, sans-serif;
+  font-size: 46px;
+  color: white;
+  text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1450980392);
+  /* */
+  /* hover */
+  transition: background-color 0.12s ease, box-shadow 0.12s ease;
+  /* */
+}
+#add-btn--:hover {
+  cursor: pointer;
+  background-color: #51a14b;
+  text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2470588235);
+}
+
+/* */
+/* baixar */
+#btn-d-json-- {
+  position: fixed;
+  width: 8rem;
+  height: 4rem;
+  left: 20.13rem;
+  border: 0;
+  border-radius: 6px;
+  background-color: #3f6fb8;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1450980392);
+  /* texts */
+  font-family: Helvetica, sans-serif;
+  font-size: 15.5px;
+  font-weight: bolder;
+  color: white;
+  text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1450980392);
+  /* */
+  /* hover */
+  transition: background-color 0.12s ease, box-shadow 0.12s ease;
+  /* */
+  /* disabled */
+  /* */
+}
+#btn-d-json--:hover {
+  cursor: pointer;
+  background-color: #37609e;
+  text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2470588235);
+}
+#btn-d-json--:disabled {
+  cursor: default;
+  font-weight: bold;
+  color: rgb(108, 108, 108);
+  text-shadow: 0px 0px 0px;
+  background-color: rgb(215, 215, 215);
+}
+
+/* */
+/* carregar */
+/* input */
+#i-l-json-- {
+  opacity: 0;
+  position: fixed;
+  left: 28.2rem;
+  top: 0.5rem;
+  padding: 22px 22px;
+}
+
+/* */
+/* label */
+#l-l-json-- {
+  position: fixed;
+  left: 28.2rem;
+  width: 13rem;
+  height: 4rem;
+  background-color: #3f6fb8;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1450980392);
+  border: 0;
+  border-radius: 6px;
+  /* hover */
+  /* */
+  /* text */
+  /* */
+}
+#l-l-json--:hover {
+  cursor: pointer;
+  background-color: #37609e;
+}
+#l-l-json-- p {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  top: 0.4rem;
+  font-family: Helvetica, sans-serif;
+  font-weight: bolder;
+  color: white;
+  text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1450980392);
+}
+
+/* */
+/* */
+/* */
 /* Menu */
 #d-menu-- {
   position: fixed;

@@ -1,101 +1,289 @@
-/* Menu */
-#d-menu-- {
-    position: fixed;
-    inset: 0;
-    margin: auto;
+$defaultFont: Helvetica, sans-serif;
 
-    width: 40rem;
-    height: 25rem;
+/* bg color */
+    html {
+        background-color: rgb(247, 247, 247);
+    }
+/* */
 
-    top: -4rem;
+/* Buttons */
+    /* voltar */
+        #--b-p-c {
+            width: 12rem;
+            height: 4rem;
 
-    background-color: rgb(152, 62, 62);
+            border: 0;
+            border-radius: 6px;
 
-    /* Elementos */
-        #d-menu-elmts-- {
-            display: flex;
+            background-color: rgb(255, 255, 255);
 
-            justify-content: center;
-            align-items: center;
+            box-shadow: 0px 2px 4px #00000025;
 
-            input {
-                display: block;
-            }
-        }
+            /* text */
+                font-family: $defaultFont;
 
-        /* Inputs */
-            #i-fornc-- {
-                position: relative;
-                top: 2.5rem;
-                left: 3rem;
-
-            }
-
-            #i-vlr-- {
-                position: relative;
-                top: 2.5rem;
-                left: 9rem;
-            }
-
-            #i-venc-- {
-                position: relative;
-                top: 5.5rem;
-                left: -23.8rem;
-            }
-
-            /* Pago? */
-                #pg-s {
-                    position: relative;
-                    top: 5.5rem;
-                    left: -9rem;
-
-                    display: flex;
-                }
-
-                #pg-n {
-                    position: relative;
-                    top: 5.5rem;
-                    left: -8rem;
-
-                    display: flex;
-                }
-            /*
-        /* */
-        /* Buttons */
-            /* Confirmar e fechar */
-                #btn-c-conta-- {
-                    position: relative;
-                    left: 8rem;
-                }
+                font-size: 22px;
+                font-weight: bolder;
                 
-                #btn-f-menu-- {
-                    position: relative;
-                    left: 0.5rem;
+                color: rgb(69, 69, 69);
+                
+                text-shadow: 0px 2px 2px #00000025;
+            /* */
+
+            /* hover */
+                transition: background-color 0.12s ease, box-shadow 0.12s ease;
+
+                &:hover {
+                    cursor: pointer;
+                    
+                    background-color: rgb(244, 244, 244);
+                    box-shadow: 0px 2px 4px #00000046;
+
+                    color: rgb(56, 56, 56);
+                }
+            /* */
+        }
+    /* */
+
+    /* adicionar */
+        #add-btn-- {
+            position: fixed;
+            
+            width: 4rem;
+            height: 4rem;
+
+            left: 16rem;
+            
+            border: 0;
+            border-radius: 6px;
+
+            background-color: #5cb756;
+            box-shadow: 0px 2px 4px #00000025;
+
+            /* text */
+                font-family: $defaultFont;
+
+                font-size: 46px;
+
+                color: white;
+                text-shadow: 0px 2px 2px #00000025;
+            /* */
+
+            /* hover */
+                transition: background-color 0.12s ease, box-shadow 0.12s ease;
+
+                &:hover {
+                    cursor: pointer;
+
+                    background-color: #51a14b;
+                    box-shadow: 0px 2px 4px #00000046;
+
+                    text-shadow: 0px 2px 2px #0000003f;
+                }
+            /* */
+        }
+    /* */
+
+    /* baixar */
+        #btn-d-json-- {
+            position: fixed;
+
+            width: 8rem;
+            height: 4rem;
+
+            left: 20.13rem;
+
+            border: 0;
+            border-radius: 6px;
+
+            background-color: #3f6fb8;
+            box-shadow: 0px 2px 4px #00000025;
+
+            /* texts */
+                font-family: $defaultFont;
+
+                font-size: 15.5px;
+                font-weight: bolder;
+
+                color: white;
+                text-shadow: 0px 2px 2px #00000025;
+            /* */
+
+            /* hover */
+                transition: background-color 0.12s ease, box-shadow 0.12s ease;
+
+                &:hover {
+                    cursor: pointer;
+
+                    background-color: #37609e;
+                    box-shadow: 0px 2px 4px #00000046;
+
+                    text-shadow: 0px 2px 2px #0000003f;
                 }
             /* */
 
-            #--btn-n-fornc {
-                position: relative;
-                top: 2.5rem;
-                left: 3rem;
-            }
+            /* disabled */
+                &:disabled {
+                    cursor: default;
+                    font-weight: bold;
 
-            #--btn-l-fornc {
-                position: relative;
-                top: 2.5rem;
-                left: 3rem;
+                    color: rgb(108, 108, 108);
+                    text-shadow: 0px 0px 0px;
+
+                    background-color: rgb(215, 215, 215);
+                }
+            /* */
+        }
+    /* */
+
+    /* carregar */
+        /* input */
+            #i-l-json-- {
+                position: fixed;
+                left: 28.2rem;
+                top: 0.5rem;
+            }
+        /* */
+
+        /* label */
+            #l-l-json-- {
+                position: fixed;
+                left: 28.2rem;
+
+                width: 13rem;
+                height: 4rem;
+
+                background-color: #3f6fb8;
+                box-shadow: 0px 2px 4px #00000025;
+                
+                border: 0;
+                border-radius: 6px;
+
+                display: flex;
+
+                /* hover */
+                    &:hover {
+                        cursor: pointer;
+
+                        background-color: #37609e;
+                        box-shadow: 0px 2px 4px #00000046;
+                    }
+                /* */
+                
+                /* text */
+                    p {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+
+                        position: relative;
+                        top: 0.4rem;
+
+                        font-family: $defaultFont;
+                        font-weight: bolder;
+
+                        color: white;
+                        text-shadow: 0px 2px 2px #00000025;
+                    }
+                /* */
             }
         /* */
     /* */
-}
+/* */
+
+/* Menu */
+    #d-menu-- {
+        position: fixed;
+        inset: 0;
+        margin: auto;
+
+        width: 40rem;
+        height: 25rem;
+
+        top: -4rem;
+
+        background-color: rgb(152, 62, 62);
+
+        /* Elementos */
+            #d-menu-elmts-- {
+                display: flex;
+
+                justify-content: center;
+                align-items: center;
+
+                input {
+                    display: block;
+                }
+            }
+
+            /* Inputs */
+                #i-fornc-- {
+                    position: relative;
+                    top: 2.5rem;
+                    left: 3rem;
+
+                }
+
+                #i-vlr-- {
+                    position: relative;
+                    top: 2.5rem;
+                    left: 9rem;
+                }
+
+                #i-venc-- {
+                    position: relative;
+                    top: 5.5rem;
+                    left: -23.8rem;
+                }
+
+                /* Pago? */
+                    #pg-s {
+                        position: relative;
+                        top: 5.5rem;
+                        left: -9rem;
+
+                        display: flex;
+                    }
+
+                    #pg-n {
+                        position: relative;
+                        top: 5.5rem;
+                        left: -8rem;
+
+                        display: flex;
+                    }
+                /*
+            /* */
+
+            /* Buttons */
+                /* Confirmar e fechar */
+                    #btn-c-conta-- {
+                        position: relative;
+                        left: 8rem;
+                    }
+                    
+                    #btn-f-menu-- {
+                        position: relative;
+                        left: 0.5rem;
+                    }
+                /* */
+
+                #--btn-n-fornc {
+                    position: relative;
+                    top: 2.5rem;
+                    left: 3rem;
+                }
+
+                #--btn-l-fornc {
+                    position: relative;
+                    top: 2.5rem;
+                    left: 3rem;
+                }
+            /* */
+        /* */
+    }
 /* */
 
 /* Contas */
-#--d-c {
-    &:hover {
-        cursor: pointer;
-        
-        background-color: rgba(0, 0, 0, 0.234);
-    }
-}
+    
 /* */
