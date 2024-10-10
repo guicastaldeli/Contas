@@ -1,5 +1,6 @@
 import '../styles/fornc-styles/main-fornc.css';
-import { useState, useRef } from "react";
+
+import { useState, useRef, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 
 function ForncMain() {
@@ -10,12 +11,28 @@ function ForncMain() {
         //Refs (Novos Fornecedores)...
             const divMenu = useRef(null);
             const divElmts = useRef(null);
+            const overflow = useRef(null);
 
             const divForncLoad = useRef(null);
 
             //Buttons...
                 const btnFecharMenu = useRef(null);
                 const btnConfButton = useRef(null);
+            //
+            
+            //Labels...
+                const rzSocialLabel = useRef(null);
+                const nmFantLabel = useRef(null);
+                const celLabel = useRef(null);
+                const cnpjCpfLabel = useRef(null);
+                const cepLabel = useRef(null);
+                const insEstLabel = useRef(null);
+                const endcoLabel = useRef(null);
+                const bairroLabel = useRef(null);
+                const cidLabel = useRef(null);
+                const ufLabel = useRef(null);
+                const emailLabel = useRef(null);
+                const wSiteLabel = useRef(null);
             //
 
             //Inputs...
@@ -85,6 +102,10 @@ function ForncMain() {
             const wSiteInfo = document.createElement('p');
             wSiteInfo.id = 'w-site-info--';
             wSiteInfo.textContent = 'Site: ';
+
+            const deleteBtnInfo = document.createElement('p');
+            deleteBtnInfo.id = 'btn-del-info--';
+            deleteBtnInfo.textContent = '-';
         //
 
         //JSON...
@@ -119,51 +140,46 @@ function ForncMain() {
 
                             if(Array.isArray(data)) {
                                 setFornc((prevFornc) => {
-                                    const nvsForncs = prevFornc.filter((nvsForncs) => {
-                                        return prevFornc.some((fornExist) =>
-                                            fornExist.rzSocial === nvsForncs.rzSocial &&
-                                            fornExist.nmFant === nvsForncs.nmFant &&
-                                            fornExist.cel === nvsForncs.cel &&
-                                            fornExist.cnpjCpf === nvsForncs.cnpjCpf &&
-                                            fornExist.cep === nvsForncs.cep &&
-                                            fornExist.insEst === nvsForncs.insEst &&
-                                            fornExist.endco === nvsForncs.endco &&
-                                            fornExist.bairro === nvsForncs.bairro &&
-                                            fornExist.cidade === nvsForncs.cidade &&
-                                            fornExist.uf === nvsForncs.uf &&
-                                            fornExist.email === nvsForncs.email &&
-                                            fornExist.wSite === nvsForncs.wSite
+                                    const nvsForncs = data.filter((nvsFornc) => {
+                                        return !prevFornc.some((fornExist) =>
+                                            fornExist.rzSocial === nvsFornc.rzSocial &&
+                                            fornExist.nmFant === nvsFornc.nmFant &&
+                                            fornExist.cel === nvsFornc.cel &&
+                                            fornExist.cnpjCpf === nvsFornc.cnpjCpf &&
+                                            fornExist.cep === nvsFornc.cep &&
+                                            fornExist.insEst === nvsFornc.insEst &&
+                                            fornExist.endco === nvsFornc.endco &&
+                                            fornExist.bairro === nvsFornc.bairro &&
+                                            fornExist.cidade === nvsFornc.cidade &&
+                                            fornExist.uf === nvsFornc.uf &&
+                                            fornExist.email === nvsFornc.email &&
+                                            fornExist.wSite === nvsFornc.wSite
                                         );
+                                    });
 
-                                        return [...prevFornc, ...nvsForncs];
-                                    })
+                                    return [...prevFornc, ...nvsForncs];
                                 });
                             } else {
-                                const nvsForncs = data;
+                                const nvsFornc = data;
 
                                 setFornc((prevFornc) => {
-                                    const forncExist = prevFornc.some((fornExist) => {
-                                        return !prevFornc.some((fornExist) =>
-                                            fornExist.rzSocial === nvsForncs.rzSocial &&
-                                            fornExist.nmFant === nvsForncs.nmFant &&
-                                            fornExist.cel === nvsForncs.cel &&
-                                            fornExist.cnpjCpf === nvsForncs.cnpjCpf &&
-                                            fornExist.cep === nvsForncs.cep &&
-                                            fornExist.insEst === nvsForncs.insEst &&
-                                            fornExist.endco === nvsForncs.endco &&
-                                            fornExist.bairro === nvsForncs.bairro &&
-                                            fornExist.cidade === nvsForncs.cidade &&
-                                            fornExist.uf === nvsForncs.uf &&
-                                            fornExist.email === nvsForncs.email &&
-                                            fornExist.wSite === nvsForncs.wSite
-                                        );
-
-                                        if(!fornExist) {
-                                            return [...prevFornc, ...nvsForncs]
-                                        }
-
-                                        return prevFornc;
-                                    })
+                                    if (!prevFornc.some((fornExist) =>
+                                        fornExist.rzSocial === nvsFornc.rzSocial &&
+                                        fornExist.nmFant === nvsFornc.nmFant &&
+                                        fornExist.cel === nvsFornc.cel &&
+                                        fornExist.cnpjCpf === nvsFornc.cnpjCpf &&
+                                        fornExist.cep === nvsFornc.cep &&
+                                        fornExist.insEst === nvsFornc.insEst &&
+                                        fornExist.endco === nvsFornc.endco &&
+                                        fornExist.bairro === nvsFornc.bairro &&
+                                        fornExist.cidade === nvsFornc.cidade &&
+                                        fornExist.uf === nvsFornc.uf &&
+                                        fornExist.email === nvsFornc.email &&
+                                        fornExist.wSite === nvsFornc.wSite
+                                    )) {
+                                        return [...prevFornc, data];
+                                    }
+                                    return prevFornc;
                                 });
                             }
                         };
@@ -178,6 +194,9 @@ function ForncMain() {
             function showAddMenu__() {
                 divMenu.current.style.display = 'block';
                 divElmts.current.style.display = 'block';
+                
+                overflow.current.style.display = 'block';
+
                 setEditFornc(null);
 
                 //Limpar Inputs...
@@ -192,9 +211,58 @@ function ForncMain() {
             function fecharMenu__() {
                 divMenu.current.style.display = 'none';
                 divElmts.current.style.display = 'none';
+
+                overflow.current.style.display = 'none';
             }
 
             function __confFornc() {
+                //inputs & labels vazios...
+                    const fields = [
+                        { ref: inputRzSocial, label: rzSocialLabel },
+                        { ref: inputForncNome, label: nmFantLabel },
+                        { ref: inputCel, label: celLabel },
+                        { ref: inputCnpjCpf, label: cnpjCpfLabel },
+                        { ref: inputCep, label: cepLabel },
+                        { ref: inputInscEst, label: insEstLabel },
+                        { ref: inputEndco, label: endcoLabel },
+                        { ref: inputBairro, label: bairroLabel },
+                        { ref: inputCidade, label: cidLabel },
+                        { ref: inputUf, label: ufLabel },
+                        { ref: inputEmail, label: emailLabel },
+                        { ref: inputWSite, label: wSiteLabel }
+                    ];
+
+                    let isValid = true;
+
+                    fields.forEach(({ ref, label }) => {
+                        const input = ref.current;
+                        const labelRef = label.current;
+
+                        if(input && labelRef) {
+                            if(input.value.trim() === '') {
+                                input.classList.add('input-err-');
+                                labelRef.classList.add('label-err-');
+        
+                                //Verif...
+                                    input.addEventListener('input', () => {
+                                        input.classList.remove('input-err-');
+                                        labelRef.classList.remove('label-err-');
+                                    })
+                                //
+
+                                isValid = false;
+                            } else {
+                                input.classList.remove('input-err-');
+                                labelRef.classList.remove('label-err-');
+                            }
+                        }
+                    })
+
+                    if(!isValid) {
+                        return;
+                    }
+                //
+
                 const nvFornc = {
                     rzSocial: inputRzSocial.current.value,
                     nmFant: inputForncNome.current.value,
@@ -225,25 +293,51 @@ function ForncMain() {
             }
 
             function changeForncMenu__(i) {
-                const fornc = fornc[i];
-                setEditFornc(i);
+                if(i >= 0 && i < fornc.length && fornc[i]) {
+                    const forncData = fornc[i];
+                    setEditFornc(i);
 
-                divMenu.current.style.display = 'block';
-                divElmts.current.style.display = 'block';
-
-                inputRzSocial.current.value = fornc.rzSocial;
-                inputForncNome.current.value = fornc.nmFant;
-                inputCel.current.value = fornc.cel;
-                inputCnpjCpf.current.value = fornc.cnpjCpf;
-                inputCep.current.value = fornc.cep
-                inputInscEst.current.value = fornc.insEst;
-                inputEndco.current.value = fornc.endco;
-                inputBairro.current.value = fornc.bairro;
-                inputCidade.current.value = fornc.cidade;
-                inputUf.current.value = fornc.uf;
-                inputEmail.current.value = fornc.email;
-                inputWSite.current.value = fornc.wSite;
+                    divMenu.current.style.display = 'block';
+                    divElmts.current.style.display = 'block';
+                    overflow.current.style.display = 'block';
+    
+                    inputRzSocial.current.value = forncData.rzSocial;
+                    inputForncNome.current.value = forncData.nmFant;
+                    inputCel.current.value = forncData.cel;
+                    inputCnpjCpf.current.value = forncData.cnpjCpf;
+                    inputCep.current.value = forncData.cep
+                    inputInscEst.current.value = forncData.insEst;
+                    inputEndco.current.value = forncData.endco;
+                    inputBairro.current.value = forncData.bairro;
+                    inputCidade.current.value = forncData.cidade;
+                    inputUf.current.value = forncData.uf;
+                    inputEmail.current.value = forncData.email;
+                    inputWSite.current.value = forncData.wSite;
+                } else {
+                    console.log('errrejj')
+                }
             }
+        //
+
+        //oveflow-y hidden
+            const [overflowVisible, setOverflowVisible] = useState(true);
+
+            useEffect(() => {
+                const upOverflow = () => {
+                    if(overflow.current) {
+                        if(getComputedStyle(overflow.current).display === 'block') {
+                            document.documentElement.style.overflowY = 'hidden';
+                        } else {
+                            document.documentElement.style.overflowY = '';
+                        }
+                    }
+                }
+
+                upOverflow();
+
+                const observer = new MutationObserver(upOverflow);
+                observer.observe(overflow.current, { attributes: true, attributeFilter: ['style'] });
+            }, [overflowVisible]);
         //
     //
 
@@ -255,15 +349,39 @@ function ForncMain() {
         }
     //
 
+    //Deletar :((...
+        const deletarFornc__ = (i) => {
+            const nvFornc = [...fornc];
+            nvFornc.splice(i, 1);
+
+            setFornc(nvFornc);
+        }
+    //
+
     return (
         <>
+            {/* overflow */}
+            <div id="overflow" ref={overflow} onClick={showAddMenu__}></div>
+
             {/* Voltar... */}
             <button id='--b-p-f' onClick={__rdrctBack}>Voltar</button>
 
             {/* ------ Novos Fornecedores ------ */}
                 {/* Adicionar fornecedores... */}
-                    <button id="-add-fornc--" onClick={showAddMenu__}>+</button>
+                    <button id="add-fornc--" onClick={showAddMenu__}>+</button>
                 {/* */}
+
+                {/* Baixar JSON */}
+                <button id='btn-d-json-f--' onClick={downloadJSON__} disabled={fornc.length === 0}>Baixar fornecedores</button>
+
+                {/* Carregar JSON */}
+                <label id='l-l-json-f--' htmlFor='i-l-json-f--'>
+                    <input id='i-l-json-f--' type='file' accept='application/json' onChange={__loadJSON} />
+                    <p>Carregar fornecedores</p>
+                </label>
+
+                {/* hr */}
+                <hr></hr>
 
                 {/* --- Menu --- */}
                     <div id="d-menu-fornc--" ref={divMenu} style={{ display: 'none' }}>
@@ -273,58 +391,52 @@ function ForncMain() {
                             {/* */}
 
                             {/* Fornecedor... */}
-                                <label htmlFor='i-rz-social'>Razão Social</label>
-                                <input id="i-rz-social--" ref={inputRzSocial}></input>
+                                <label htmlFor='i-rz-social' id="l-" className="i-1-" ref={rzSocialLabel}>Razão Social:</label>
+                                <input id="i-rz-social--" className="i-1-" ref={inputRzSocial}></input>
 
-                                <label htmlFor='i-fornc-nome'>Nome Fantasia</label>
-                                <input id="i-fornc-nome" ref={inputForncNome}></input>
+                                <label htmlFor='i-fornc-nome' id="l-" className="i-1-" ref={nmFantLabel}>Nome Fantasia:</label>
+                                <input id="i-fornc-nome" className="i-1-" ref={inputForncNome}></input>
 
-                                <label htmlFor='i-cel--'>Celular/Telefone</label>
-                                <input id="i-cel--" ref={inputCel}></input>
+                                <label htmlFor='i-cel--' id="l-" className="i-1-" ref={celLabel}>Celular/Telefone:</label>
+                                <input id="i-cel--" className="i-1-" type="number" ref={inputCel}></input>
 
                                 {/* Dados Casdastrais */}
-                                    <label htmlFor="i-cnpj-cpf--">CPNJ ou CPF</label>
-                                    <input id="i-cnpj-cpf--" ref={inputCnpjCpf}></input>
+                                    <label htmlFor="i-cnpj-cpf--" id="l-" className="i-2-" ref={cnpjCpfLabel}>CPNJ ou CPF:</label>
+                                    <input id="i-cnpj-cpf--" className="i-2-" type="number" ref={inputCnpjCpf}></input>
 
-                                    <label htmlFor="i-cep--">CEP</label>
-                                    <input id="i-cep--" ref={inputCep}></input>
+                                    <label htmlFor="i-cep--" id="l-" className="i-2-" ref={cepLabel}>CEP:</label>
+                                    <input id="i-cep--" className="i-2-" type="number" ref={inputCep}></input>
 
-                                    <label htmlFor="i-ins-est--">Inscrição Estadual</label>
-                                    <input id="i-ins-est--" ref={inputInscEst}></input>
+                                    <label htmlFor="i-ins-est--" id="l-" className="i-2-" ref={insEstLabel}>Inscrição Estadual:</label>
+                                    <input id="i-ins-est--" className="i-2-" type="number" ref={inputInscEst}></input>
 
-                                    <label htmlFor="i-endco--">Endereço</label>
-                                    <input id="i-endco--" ref={inputEndco}></input>
+                                    <label htmlFor="i-endco--" id="l-" className="i-3-" ref={endcoLabel}>Endereço:</label>
+                                    <input id="i-endco--" className="i-3-" ref={inputEndco}></input>
 
-                                    <label htmlFor="i-bairro--">Bairro</label>
-                                    <input id="i-bairro--" ref={inputBairro}></input>
+                                    <label htmlFor="i-bairro--" id="l-" className="i-3-" ref={bairroLabel}>Bairro:</label>
+                                    <input id="i-bairro--" className="i-3-" ref={inputBairro}></input>
 
-                                    <label htmlFor="i-cidade--">Cidade</label>
-                                    <input id="i-cidade--" ref={inputCidade}></input>
+                                    <label htmlFor="i-cidade--" id="l-" className="i-3-" ref={cidLabel}>Cidade:</label>
+                                    <input id="i-cidade--" className="i-3-" ref={inputCidade}></input>
 
-                                    <label htmlFor="i-uf--">UF</label>
-                                    <input id="i-uf--" ref={inputUf}></input>
+                                    <label htmlFor="i-uf--" id="l-" className="i-3-" ref={ufLabel}>UF:</label>
+                                    <input id="i-uf--" className="i-3-" ref={inputUf}></input>
 
-                                    <label htmlFor="i-email--">E-mail</label>
-                                    <input id="i-email--" ref={inputEmail}></input>
+                                    <label htmlFor="i-email--" id="l-" className="i-4-" ref={emailLabel}>E-mail:</label>
+                                    <input id="i-email--" className="i-4-" ref={inputEmail}></input>
 
-                                    <label htmlFor="i-w-site--">Site</label>
-                                    <input id="i-w-site--" ref={inputWSite}></input>
+                                    <label htmlFor="i-w-site--" id="l-" className="i-4-" ref={wSiteLabel}>Site:</label>
+                                    <input id="i-w-site--" className="i-4-" ref={inputWSite}></input>
                                 {/* */}
                             {/* */}
 
-                            {/* Confirmar... */}
-                                <button id="btn-c-fornc--" ref={btnConfButton} onClick={__confFornc}>Confirmar</button>
+                            {/* Cadastrar... */}
+                                <button id="btn-c-fornc--" ref={btnConfButton} onClick={__confFornc}>Cadastrar</button>
                             {/* */}
                         </div>
                     </div>
                 {/* */}
             {/* -------------------------------- */}
-
-            {/* Baixar JSON */}
-            <button id='btn-d-json--' onClick={downloadJSON__} disabled={fornc.length === 0}>Baixar</button>
-
-            {/* Carregar JSON */}
-            <input type='file' accept='application/json' onChange={__loadJSON} />
 
             {/* Exibir Fornecedores & Editar Fornecedores... */}
                 <div ref={divForncLoad} onDoubleClick={(e) => {
@@ -335,23 +447,23 @@ function ForncMain() {
                         changeForncMenu__(index);
                     }
                 }}>
-                    <div ref={divForncLoad}>
-                        {fornc.map((fnc, i) => (
-                            <div key={i} id='--d-fornc'>
-                                <p>{rzSocialInfo.textContent} {fnc.rzSocial}</p>
-                                <p>{nomeFantInfo.textContent} {fnc.nmFant}</p>
-                                <p>{celInfo.textContent} {fnc.cel}</p>
-                                <p>{cnpjCpfInfo.textContent} {fnc.cnpjCpf}</p>
-                                <p>{inscEstInfo.textContent} {fnc.insEst}</p>
-                                <p>{endcoInfo.textContent} {fnc.endco}</p>
-                                <p>{bairroInfo.textContent} {fnc.bairro}</p>
-                                <p>{cidadeInfo.textContent} {fnc.cidade}</p>
-                                <p>{ufInfo.textContent} {fnc.uf}</p>
-                                <p>{emailInfo.textContent} {fnc.email}</p>
-                                <p>{wSiteInfo.textContent} {fnc.wSite}</p>
-                            </div>
-                        ))}
-                    </div>
+                    {fornc.map((fnc, i) => (
+                        <div key={i} id='--d-fornc'>
+                            <p>{rzSocialInfo.textContent} {fnc.rzSocial}</p>
+                            <p>{nomeFantInfo.textContent} {fnc.nmFant}</p>
+                            <p>{celInfo.textContent} {fnc.cel}</p>
+                            <p>{cnpjCpfInfo.textContent} {fnc.cnpjCpf}</p>
+                            <p>{inscEstInfo.textContent} {fnc.insEst}</p>
+                            <p>{endcoInfo.textContent} {fnc.endco}</p>
+                            <p>{bairroInfo.textContent} {fnc.bairro}</p>
+                            <p>{cidadeInfo.textContent} {fnc.cidade}</p>
+                            <p>{ufInfo.textContent} {fnc.uf}</p>
+                            <p>{emailInfo.textContent} {fnc.email}</p>
+                            <p>{wSiteInfo.textContent} {fnc.wSite}</p>
+
+                            <button id="btn-del--" onClick={() => deletarFornc__(i)}>{deleteBtnInfo.textContent}</button>
+                        </div>
+                    ))}
                 </div>
             {/* */}
         </>

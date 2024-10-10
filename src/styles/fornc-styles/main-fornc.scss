@@ -1,19 +1,455 @@
-#d-fornc-- {
-    user-select: none;
-    display: flex;
+$defaultFont: Helvetica, sans-serif;
 
-    &:hover {
-        cursor: pointer;
-        background-color: rgba(0, 0, 0, 0.162);
+/* bg color */
+    html {
+        background-color: rgb(247, 247, 247);
     }
+/* */
+
+/* Buttons */
+    /* voltar */
+        #--b-p-f {
+            width: 12rem;
+            height: 4rem;
+
+            border: 0;
+            border-radius: 6px;
+
+            background-color: rgb(255, 255, 255);
+
+            box-shadow: 0px 2px 4px #00000025;
+
+            /* text */
+                font-family: $defaultFont;
+
+                font-size: 22px;
+                font-weight: bolder;
+                
+                color: rgb(69, 69, 69);
+                
+                text-shadow: 0px 2px 2px #00000025;
+            /* */
+
+            /* hover */
+                transition: background-color 0.12s ease, box-shadow 0.12s ease;
+
+                &:hover {
+                    cursor: pointer;
+                 
+                    background-color: rgb(244, 244, 244);
+                    box-shadow: 0px 2px 4px #00000046;
+
+                    color: rgb(56, 56, 56);
+                }
+            /* */
+        }
+    /* */
+
+    /* adicionar */
+        #add-fornc-- {
+            position: absolute;
+            
+            width: 4rem;
+            height: 4rem;
+
+            left: 16rem;
+            
+            border: 0;
+            border-radius: 6px;
+
+            background-color: #8037D3;
+            box-shadow: 0px 2px 4px #00000025;
+
+            /* text */
+                font-family: $defaultFont;
+
+                font-size: 46px;
+
+                color: white;
+                text-shadow: 0px 2px 2px #00000025;
+            /* */
+
+            /* hover */
+                transition: background-color 0.12s ease, box-shadow 0.12s ease;
+
+                &:hover {
+                    cursor: pointer;
+
+                    background-color: #6a2eae;
+                    box-shadow: 0px 2px 4px #00000046;
+
+                    text-shadow: 0px 2px 2px #0000003f;
+                }
+            /* */
+        }
+    /* */
+
+    /* baixar */
+        #btn-d-json-f-- {
+            position: absolute;
+
+            width: 12rem;
+            height: 4rem;
+
+            left: 20.13rem;
+
+            border: 0;
+            border-radius: 6px;
+
+            background-color: #3f6fb8;
+            box-shadow: 0px 2px 4px #00000025;
+
+            /* text */
+                font-family: $defaultFont;
+                
+                font-size: 17px;
+                font-weight: bolder;
+
+                color: white;
+                text-shadow: 0px 2px 2px #00000025;
+            /* */
+
+            /* hover */
+                transition: background-color 0.12s ease, box-shadow 0.12s ease;
+
+                &:hover {
+                    cursor: pointer;
+
+                    background-color: #37609e;
+                    box-shadow: 0px 2px 4px #00000046;
+
+                    text-shadow: 0px 2px 2px #0000003f;
+                }
+            /* */
+
+            /* disabled */
+                &:disabled {
+                    cursor: default;
+                    font-weight: bold;
+
+                    color: rgb(108, 108, 108);
+                    text-shadow: 0px 0px 0px;
+                    box-shadow: 0px 0px 0px;
+
+                    background-color: rgb(215, 215, 215);
+                }
+            /* */
+        }
+    /* */
+
+    /* carregar */
+        /* input */
+            #i-l-json-f-- {
+                opacity: 0;
+
+                position: absolute;
+
+                width: 13rem;
+                height: 4rem;
+
+                cursor: pointer;
+            }
+        /* */
+
+        /* label */
+            #l-l-json-f-- {
+                position: absolute;
+                left: 32.3rem;
+
+                width: 13rem;
+                height: 4rem;
+
+                background-color: #3f6fb8;
+                box-shadow: 0px 2px 4px #00000025;
+                
+                border: 0;
+                border-radius: 6px;
+
+                /* hover */
+                    &:hover {
+                        cursor: pointer;
+
+                        background-color: #37609e;
+                        box-shadow: 0px 2px 4px #00000046;
+                    }
+                /* */
+            
+                /* text */
+                    p {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+
+                        position: relative;
+                        top: 0.4rem;
+
+                        font-family: $defaultFont;
+                        font-weight: bolder;
+
+                        color: white;
+                        text-shadow: 0px 2px 2px #00000025;
+                    }
+                /* */
+            }
+        /* */
+    /* */
+
+    /* hr */
+        hr {
+            position: relative;
+            border: 0;
+
+            width: 100%;
+            height: 0.01rem;
+
+            background-color: rgb(207, 207, 207);
+            
+            box-shadow: 0px 2px 4px #00000017;
+        }
+    /* */
+/* */
+
+#--d-fornc {
+    user-select: none;
+
+    border-bottom: 1px solid rgb(197, 197, 197);
+
+    /* text */
+        p {
+            position: relative;
+            left: 0.2rem;
+            top: 0.2rem;
+
+            font-family: $defaultFont;
+        }
+    /* */
+
+    /* hover */
+        &:hover {
+            cursor: pointer;
+            background-color: rgba(0, 0, 0, 0.162);
+        }
+    /* */
+
+    /* deletar */
+        #btn-del-- {
+            position: relative;
+            top: -0.2rem;
+            left: 0.2rem;
+
+            width: 2rem;
+            height: 2rem;
+            
+            border: 0;
+            border-radius: 6px;
+
+            font-size: 24px;
+
+            color: white;
+            text-shadow: 0px 2px 2px #00000025;
+
+            background-color: rgb(157, 26, 26);
+            box-shadow: 0px 2px 4px #00000013;
+
+            /* hover */
+                transition: background-color 0.12s ease;
+                &:hover {
+                    cursor: pointer;
+
+                    background-color: rgb(131, 22, 22);
+                    box-shadow: 0px 2px 4px #00000046;
+                }
+            /* */
+        }
+    /* */
 }
 
-#d-menu-fornc-- {
-    width: 45rem;
-    
-    background-color: rgb(166, 99, 99);
-}
+/* menu */
+    /* overflow */
+        #overflow {
+            z-index: 2;
 
-#opt-fornc-- {
-    background-color: white;
-}
+            position: absolute;
+            display: none;
+            
+            width: 100%;
+            height: 1000%;
+
+            top: 0;
+            left: 0;
+
+            background-color: rgba(0, 0, 0, 0.201);
+
+        }
+    /* */
+
+    #d-menu-fornc-- {
+        user-select: none;
+        z-index: 9;
+
+        position: fixed;
+        inset: 0;
+        margin: auto;
+
+        width: 25rem;
+        height: 37rem;
+
+        border: 0;
+        border-radius: 6px;
+
+        box-shadow: 0px 2px 4px #00000013;
+        
+        /* input & label */
+            input, label {
+                position: absolute;
+                left: 6rem;
+
+                display: flex;
+                flex-direction: column;
+
+                margin-top: 1px;
+            }
+
+            /* input... */
+                input {
+                    border: 1px solid transparent;
+                    border-radius: 6px;
+
+                    box-shadow: 0px 2px 4px #00000025;
+
+                    &:hover {
+                        cursor: text;
+
+                        box-shadow: 0px 2px 4px #00000046;
+                        background-color: rgb(231, 231, 231);
+                    }
+                }
+
+                /* erros */
+                    .input-err- {
+                        border: 1px solid rgb(157, 26, 26);
+                    }
+                /* */
+            /* */
+
+            /* label */
+                label {
+                    font-family: $defaultFont;
+                    width: fit-content;
+                }
+
+                #l- {
+                    font-size: 14px;
+                }
+
+                /* erros */
+                    .label-err- {
+                        color: rgb(157, 26, 26);
+                    }
+                /* */
+            /* */
+        /* */
+
+        /* .i */
+            /* 1 */
+                .i-1- {
+                    position: relative;
+                    top: -1rem;
+
+                    margin: 2px;
+                }
+            /* */
+
+            /* 2 */
+                .i-2- {
+                    position: relative;
+                    top: 0rem;
+
+                    margin: 2px;
+                }
+            /* */
+
+            /* 3 */
+                .i-3- {
+                    position: relative;
+                    top: 1rem;
+
+                    margin: 2px;
+                }
+            /* */
+
+            /* 4 */
+                .i-4- {
+                    position: relative;
+                    top: 2rem;
+
+                    margin: 2px;
+                }
+            /* */
+        /* */
+        
+        background-color: rgb(255, 255, 255);
+
+        /* buttons */
+            #btn-f-menu-fornc-- {
+                position: relative;
+                border: 0;
+
+                left: 0.5rem;
+                top: 0.5rem;
+
+                background-color: transparent;
+                font-size: 20px;
+
+                /* hover */
+                    &:hover {
+                        cursor: pointer;
+
+                        background-color: rgb(238, 238, 238);
+                        border-radius: 6px;
+                    }
+                /* */
+            }
+
+            #btn-c-fornc-- {
+                position: relative;
+                inset: 0;
+                margin: auto;
+
+                top: 2.6rem;
+                left: 0.5rem;
+
+                width: 96%;
+                height: 3rem;
+
+                border: 0;
+                border-radius: 6px;
+                background-color: #8037D3;
+                box-shadow: 0px 2px 4px #00000025;
+
+                /* text */
+                    font-family: $defaultFont;
+                    
+                    font-size: 17px;
+                    font-weight: bolder;
+
+                    color: white;
+                    text-shadow: 0px 2px 2px #00000025;
+                /* */
+
+                /* hover */
+                    transition: background-color 0.12s ease, box-shadow 0.12s ease;
+
+                    &:hover {
+                        cursor: pointer;
+
+                        background-color: #6a2eae;
+                        box-shadow: 0px 2px 4px #00000046;
+
+                        text-shadow: 0px 2px 2px #0000003f;
+                    }
+                /* */
+            }
+        /* */
+    }
+/* */
