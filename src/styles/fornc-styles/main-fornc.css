@@ -321,12 +321,11 @@ hr {
   border-radius: 6px;
 }
 #d-menu-fornc-- #btn-c-fornc-- {
-  position: relative;
+  position: absolute;
   inset: 0;
   margin: auto;
-  top: 2.6rem;
-  left: 0.5rem;
-  width: 96%;
+  top: 32.6rem;
+  width: 92%;
   height: 3rem;
   border: 0;
   border-radius: 6px;

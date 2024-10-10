@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /* ------- Imports ------- */
 /* bg color */
 html {
@@ -201,18 +202,25 @@ html {
 /* carregar */
 /* input */
 #i-l-json-- {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
   opacity: 0;
   position: absolute;
-  left: 28.2rem;
+  left: 0rem;
   top: 0.5rem;
   width: 13rem;
   height: 4rem;
+  z-index: 3;
   cursor: pointer;
 }
 
 /* */
 /* label */
 #l-l-json-- {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
   position: fixed;
   left: 28.3rem;
   width: 13rem;
@@ -232,10 +240,10 @@ html {
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2745098039);
 }
 #l-l-json-- p {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative;
   top: 0.4rem;
   font-family: Helvetica, sans-serif;
   font-weight: bolder;
@@ -258,17 +266,77 @@ hr {
 
 /* */
 /* Menu */
+/* overflow */
+#overflow {
+  z-index: 2;
+  position: absolute;
+  display: none;
+  width: 100%;
+  height: 1000%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.201);
+}
+
+/* */
+/* erros */
+/* input */
+.c-input-err- {
+  border: 1px solid rgb(157, 26, 26) !important;
+}
+
+/* */
+/* label */
+.c-label-err- {
+  color: rgb(157, 26, 26);
+}
+
+/* */
+/* */
 #d-menu-- {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  z-index: 9;
   position: fixed;
   inset: 0;
   margin: auto;
-  width: 40rem;
-  height: 25rem;
-  top: -4rem;
-  background-color: rgb(152, 62, 62);
+  width: 35rem;
+  height: 20rem;
+  border-radius: 6px;
+  background-color: white;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.0745098039);
+  /* fonte */
+  font-family: Helvetica, sans-serif;
   /* Elementos */
   /* Inputs */
+  /* fornecedor */
+  /* label */
+  /* */
+  /* */
+  /* lista fornecedores */
+  /* label */
+  /* */
+  /* lista */
+  /* */
+  /* */
+  /* valor */
+  /* label */
+  /* */
+  /* */
+  /* vencimento */
+  /* label */
+  /* */
+  /* */
   /* Pago? */
+  /* Sim */
+  /* label */
+  /* */
+  /* */
+  /* Não */
+  /* label */
+  /* */
+  /* */
   /*
   /* */
   /* Buttons */
@@ -277,48 +345,227 @@ hr {
   /* */
   /* */
 }
+#d-menu-- input {
+  position: absolute;
+  border: 0px;
+}
 #d-menu-- #d-menu-elmts-- {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 #d-menu-- #d-menu-elmts-- input {
-  display: block;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1450980392);
+}
+#d-menu-- #d-menu-elmts-- input:hover {
+  cursor: text;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2745098039);
+  background-color: rgb(231, 231, 231);
+}
+#d-menu-- #l-i-fornc {
+  position: absolute;
+  top: 2.2rem;
+  left: 0.7rem;
+  font-size: 14px;
 }
 #d-menu-- #i-fornc-- {
-  position: relative;
-  top: 2.5rem;
-  left: 3rem;
+  position: absolute;
+  top: 3.5rem;
+  left: 0.7rem;
+  /* focus */
+  /* */
+}
+#d-menu-- #i-fornc--:focus {
+  outline: 1.5px solid #37609e;
+}
+#d-menu-- #i-l-fornc-- {
+  position: absolute;
+  top: 3.33rem;
+  left: 12rem;
+  opacity: 0;
+  width: 4rem;
+  height: 1.35rem;
+  cursor: pointer;
+}
+#d-menu-- #l-i-l-fornc-- {
+  position: absolute;
+  top: 3.35rem;
+  left: 12rem;
+  width: 4rem;
+  height: 1.35rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 0;
+  border-radius: 6px;
+  background-color: rgb(215, 215, 215);
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1450980392);
+  /* texts */
+  font-size: 16px;
+  text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1450980392);
+  /* */
+  /* hover */
+  /* */
+}
+#d-menu-- #l-i-l-fornc--:hover {
+  cursor: pointer;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2745098039);
+  background-color: rgb(201, 201, 201);
+  text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2470588235);
+}
+#d-menu-- #opt-fornc-- {
+  position: absolute;
+  top: 5rem;
+  left: 12rem;
+  font-size: 14px;
+  border: 0;
+  border-radius: 6px;
+  background-color: rgb(215, 215, 215);
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1450980392);
+  /* hover */
+  /* */
+}
+#d-menu-- #opt-fornc--:hover {
+  cursor: pointer;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2745098039);
+}
+#d-menu-- #l-i-vlr-- {
+  position: absolute;
+  top: 2.2rem;
+  left: 23.5rem;
+  font-size: 14px;
 }
 #d-menu-- #i-vlr-- {
-  position: relative;
-  top: 2.5rem;
-  left: 9rem;
+  position: absolute;
+  top: 3.5rem;
+  left: 23.5rem;
+  /* focus */
+  /* */
+}
+#d-menu-- #i-vlr--:focus {
+  outline: 1.5px solid #37609e;
+}
+#d-menu-- #l-i-venc-- {
+  position: absolute;
+  top: 5.5rem;
+  left: 0.7rem;
+  font-size: 14px;
 }
 #d-menu-- #i-venc-- {
-  position: relative;
-  top: 5.5rem;
-  left: -23.8rem;
+  position: absolute;
+  top: 6.5rem;
+  left: 0.7rem;
+  /* focus */
+  /* */
+}
+#d-menu-- #i-venc--:focus {
+  outline: 1.5px solid #37609e;
+}
+#d-menu-- #pg- {
+  position: absolute;
+  top: 5.7rem;
+  left: 24rem;
+}
+#d-menu-- #l-i-pg-s-- {
+  position: absolute;
+  top: 0.2rem;
+  left: 1.8rem;
 }
 #d-menu-- #pg-s {
-  position: relative;
-  top: 5.5rem;
-  left: -9rem;
+  position: absolute;
+  top: 6.5rem;
+  left: 27.5rem;
   display: flex;
+}
+#d-menu-- #pg-s input[type=radio] {
+  cursor: pointer;
+  /* before */
+  /* */
+}
+#d-menu-- #pg-s input[type=radio]::before {
+  content: "";
+  display: inline-block;
+  width: 20px;
+  height: 18px;
+  opacity: 1;
+  background-color: rgb(189, 189, 189);
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1450980392);
+}
+#d-menu-- #pg-s input[type=radio]:checked::before {
+  background-color: green;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2745098039);
+}
+#d-menu-- #l-i-pg-n-- {
+  position: absolute;
+  top: 0.2rem;
+  left: 1.7rem;
 }
 #d-menu-- #pg-n {
-  position: relative;
-  top: 5.5rem;
-  left: -8rem;
+  position: absolute;
+  top: 6.5rem;
+  left: 31rem;
   display: flex;
 }
+#d-menu-- #pg-n input[type=radio] {
+  cursor: pointer;
+  /* before */
+  /* */
+}
+#d-menu-- #pg-n input[type=radio]::before {
+  content: "";
+  display: inline-block;
+  width: 20px;
+  height: 18px;
+  opacity: 1;
+  background-color: rgb(189, 189, 189);
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1450980392);
+}
+#d-menu-- #pg-n input[type=radio]:checked::before {
+  background-color: rgb(145, 27, 27);
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2745098039);
+}
 #d-menu-- #btn-c-conta-- {
-  position: relative;
-  left: 8rem;
+  position: absolute;
+  width: 95%;
+  height: 4rem;
+  top: 15.5rem;
+  left: 0.8rem;
+  border: 0;
+  border-radius: 6px;
+  background-color: #5cb756;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1450980392);
+  /* text */
+  font-family: Helvetica, sans-serif;
+  font-size: 18px;
+  color: white;
+  text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1450980392);
+  /* */
+  /* hover */
+  transition: background-color 0.12s ease, box-shadow 0.12s ease;
+  /* */
+}
+#d-menu-- #btn-c-conta--:hover {
+  cursor: pointer;
+  background-color: #51a14b;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2745098039);
+  text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2470588235);
 }
 #d-menu-- #btn-f-menu-- {
   position: relative;
-  left: 0.5rem;
+  left: -16.5rem;
+  top: 0.2rem;
+  border: 0;
+  background-color: transparent;
+  font-size: 18px;
+  /* hover */
+  /* */
+}
+#d-menu-- #btn-f-menu--:hover {
+  cursor: pointer;
+  background-color: rgb(238, 238, 238);
+  border-radius: 6px;
 }
 #d-menu-- #--btn-n-fornc {
   position: relative;
@@ -333,15 +580,33 @@ hr {
 
 /* */
 /* Contas */
+/* deletar contas */
+#c-btn-del-- {
+  border: 0;
+  background-color: rgb(157, 26, 26);
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.0745098039);
+  /* text */
+  color: white;
+  text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1450980392);
+  /* */
+  /* hover */
+  transition: background-color 0.12s ease;
+  /* */
+}
+#c-btn-del--:hover {
+  cursor: pointer;
+  background-color: rgb(131, 22, 22);
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2745098039);
+}
+
+/* */
 #--d-c {
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
   position: relative;
-  left: 0.5rem;
+  left: 0rem;
   top: 0rem;
-  width: 64rem;
-  height: 1.5rem;
   border-bottom: 1px solid rgb(197, 197, 197);
   /* texts */
   /* */
@@ -351,7 +616,7 @@ hr {
 #--d-c p {
   position: relative;
   display: inline;
-  top: 0.2rem;
+  top: 0rem;
   left: -3rem;
   margin-left: 55px;
   font-family: Helvetica, sans-serif;
@@ -365,7 +630,7 @@ hr {
 /* */
 /* bg color */
 html {
-  background-color: rgb(247, 247, 247);
+  background-color: rgb(0, 0, 0);
 }
 
 /* */
@@ -469,8 +734,6 @@ html {
 #i-l-json-f-- {
   opacity: 0;
   position: absolute;
-  left: 32.3rem;
-  top: 0.5rem;
   width: 13rem;
   height: 4rem;
   cursor: pointer;
@@ -532,28 +795,58 @@ hr {
   /* */
   /* hover */
   /* */
+  /* deletar */
+  /* */
 }
 #--d-fornc p {
+  position: relative;
+  left: 0.2rem;
+  top: 0.2rem;
   font-family: Helvetica, sans-serif;
 }
 #--d-fornc:hover {
   cursor: pointer;
   background-color: rgba(0, 0, 0, 0.162);
 }
+#--d-fornc #btn-del-- {
+  position: relative;
+  top: -0.2rem;
+  left: 0.2rem;
+  width: 2rem;
+  height: 2rem;
+  border: 0;
+  border-radius: 6px;
+  font-size: 24px;
+  background-color: rgb(157, 26, 26);
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.0745098039);
+  /* text */
+  color: white;
+  text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1450980392);
+  /* */
+  /* hover */
+  transition: background-color 0.12s ease;
+  /* */
+}
+#--d-fornc #btn-del--:hover {
+  cursor: pointer;
+  background-color: rgb(131, 22, 22);
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2745098039);
+}
 
 /* menu */
+/* overflow */
 #overflow {
-  overflow: hidden;
   z-index: 2;
   position: absolute;
   display: none;
   width: 100%;
-  height: 100%;
+  height: 1000%;
   top: 0;
   left: 0;
   background-color: rgba(0, 0, 0, 0.201);
 }
 
+/* */
 #d-menu-fornc-- {
   -webkit-user-select: none;
      -moz-user-select: none;
@@ -569,8 +862,12 @@ hr {
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.0745098039);
   /* input & label */
   /* input... */
+  /* erros */
+  /* */
   /* */
   /* label */
+  /* erros */
+  /* */
   /* */
   /* */
   /* .i */
@@ -588,26 +885,35 @@ hr {
   /* */
 }
 #d-menu-fornc-- input, #d-menu-fornc-- label {
-  position: relative;
+  position: absolute;
   left: 6rem;
   display: flex;
   flex-direction: column;
   margin-top: 1px;
 }
 #d-menu-fornc-- input {
-  border: 0;
+  border: 1px solid transparent;
   border-radius: 6px;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1450980392);
 }
 #d-menu-fornc-- input:hover {
   cursor: text;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2745098039);
   background-color: rgb(231, 231, 231);
+}
+#d-menu-fornc-- .input-err- {
+  border: 1px solid rgb(157, 26, 26);
 }
 #d-menu-fornc-- label {
   font-family: Helvetica, sans-serif;
+  width: -moz-fit-content;
+  width: fit-content;
 }
 #d-menu-fornc-- #l- {
   font-size: 14px;
+}
+#d-menu-fornc-- .label-err- {
+  color: rgb(157, 26, 26);
 }
 #d-menu-fornc-- .i-1- {
   position: relative;
@@ -636,6 +942,8 @@ hr {
   top: 0.5rem;
   background-color: transparent;
   font-size: 20px;
+  /* hover */
+  /* */
 }
 #d-menu-fornc-- #btn-f-menu-fornc--:hover {
   cursor: pointer;
@@ -643,7 +951,7 @@ hr {
   border-radius: 6px;
 }
 #d-menu-fornc-- #btn-c-fornc-- {
-  position: relative;
+  position: absolute;
   inset: 0;
   margin: auto;
   top: 2.6rem;
@@ -673,8 +981,4 @@ hr {
 }
 
 /* */
-#opt-fornc-- {
-  background-color: white;
-}
-
 /* ----------------------- *//*# sourceMappingURL=style.css.map */
