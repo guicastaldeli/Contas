@@ -50,6 +50,10 @@ function ContasMain() {
 
     //Contas...
         //Info texts...
+            const deleteBtnInfo = document.createElement('p');
+            deleteBtnInfo.id = '--del-info';
+            deleteBtnInfo.textContent = '-';
+
             const fornInfo = document.createElement('p');
             fornInfo.id = '--f-info';
             fornInfo.textContent = 'Forncedor: ';
@@ -274,7 +278,7 @@ function ContasMain() {
                 reader.onload = (e) => {
                     const data = JSON.parse(e.target.result);
 
-                    if(Array.isArray(data) && data.length > 1) {
+                    if(Array.isArray(data) && data.length > 0) {
                         const forncArray = data.map(item => item.rzSocial);
                         setForncs(forncArray);
 
@@ -326,6 +330,15 @@ function ContasMain() {
             const observer = new MutationObserver(upOverflow);
             observer.observe(overflow.current, { attributes: true, attributeFilter: ['style'] })
         }, [overflowVisible]);
+    //
+
+    //Deletar contas...
+        const deletarContas__ = (i) => {
+            const nvConta = [...contas];
+            nvConta.splice(i, 1);
+
+            setContas(nvConta)
+        }
     //
 
     return (
@@ -398,7 +411,7 @@ function ContasMain() {
                             </div>
 
                             <div id="pg-n">
-                                <input id="i-pg-n--" type="radio" name="pg-sn" ref={inputPgNao} checked/>
+                                <input id="i-pg-n--" type="radio" name="pg-sn" ref={inputPgNao}/>
                                 <label id='l-i-pg-n--' htmlFor="i-pg-n--" ref={inputPgNaoLabel}>{pgNLabelTxt.textContent}</label>
                             </div>
                         {/* */}
@@ -417,6 +430,8 @@ function ContasMain() {
                 }}>
                     {contas.map((conta, i) => (
                         <div key={i} id='--d-c'>
+                            <button id="c-btn-del--" onClick={() => deletarContas__(i)}>{deleteBtnInfo.textContent}</button>
+
                             <p>{fornInfo.textContent} {conta.fornecedor}</p>
                             <p>{valorInfo.textContent} {parseFloat(conta.valor).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
                             <p>{vencInfo.textContent} {new Date(conta.vencimento).toLocaleDateString('pt-BR')}</p>

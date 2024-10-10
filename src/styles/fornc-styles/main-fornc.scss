@@ -245,11 +245,13 @@ $defaultFont: Helvetica, sans-serif;
 
             font-size: 24px;
 
-            color: white;
-            text-shadow: 0px 2px 2px #00000025;
-
             background-color: rgb(157, 26, 26);
             box-shadow: 0px 2px 4px #00000013;
+            
+            /* text */
+                color: white;
+                text-shadow: 0px 2px 2px #00000025;
+            /* */
 
             /* hover */
                 transition: background-color 0.12s ease;
