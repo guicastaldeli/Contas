@@ -47,6 +47,7 @@ $defaultFont: Helvetica, sans-serif;
 
     /* adicionar */
         #add-btn-- {
+            user-select: none;
             position: absolute;
             
             width: 4rem;

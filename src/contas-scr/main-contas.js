@@ -117,7 +117,7 @@ function ContasMain() {
                         if(conta.pago === 'Sim') {
                             inputPgSim.current.checked = true;
                         } else {
-                            inputPgNao.current.checked = false;
+                            inputPgNao.current.checked = true;
                         }
                     //
                 } else {
@@ -434,7 +434,7 @@ function ContasMain() {
 
                             <p>{fornInfo.textContent} {conta.fornecedor}</p>
                             <p>{valorInfo.textContent} {parseFloat(conta.valor).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
-                            <p>{vencInfo.textContent} {new Date(conta.vencimento).toLocaleDateString('pt-BR')}</p>
+                            <p>{vencInfo.textContent} {new Date(conta.vencimento + 'T00:00:00').toLocaleDateString('pt-BR')}</p>
                             <p>{pgInfo.textContent} {conta.pago}</p>
                         </div>
                     ))}
